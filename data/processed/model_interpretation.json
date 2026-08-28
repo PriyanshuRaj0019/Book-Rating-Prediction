@@ -1,0 +1,96 @@
+{
+  "model_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\final_model.joblib",
+  "preprocessing_pipeline_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\fitted_preprocessing_pipeline.joblib",
+  "test_sample_count": 200,
+  "feature_count": 12,
+  "scoring_metric": "f1",
+  "method": "Permutation importance on the untouched test set",
+  "top_features": [
+    {
+      "rank": 1,
+      "feature_name": "price_gbp",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 2,
+      "feature_name": "price_log_gbp",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 3,
+      "feature_name": "title_character_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 4,
+      "feature_name": "title_word_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 5,
+      "feature_name": "title_digit_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 6,
+      "feature_name": "title_punctuation_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 7,
+      "feature_name": "title_uppercase_ratio",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 8,
+      "feature_name": "price_band_10 to 19",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 9,
+      "feature_name": "price_band_20 to 29",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 10,
+      "feature_name": "price_band_40 to 49",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 11,
+      "feature_name": "price_band_50 and above",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 12,
+      "feature_name": "price_band_30 to 39",
+      "importance_mean": -0.067511,
+      "importance_std": 0.025457
+    }
+  ],
+  "saved_plot_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\feature_importance.png",
+  "business_interpretation": [
+    "The most influential feature for the final model is price_gbp.",
+    "Higher permutation importance means model performance drops more when that feature is shuffled.",
+    "Price-related and title-derived features help the model estimate whether a book belongs to the high-rating class.",
+    "Categorical features such as category, availability, and price band provide additional signal after one-hot encoding.",
+    "The interpretation is educational because the source website uses randomly assigned ratings and prices."
+  ],
+  "limitations": [
+    "Permutation importance measures association with model predictions, not causation.",
+    "Feature importance can vary across train-test splits.",
+    "Highly correlated features can share or dilute importance.",
+    "The dataset is from a scraping sandbox, so business interpretation is not real market evidence."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "input_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\raw\\books.csv",
+  "output_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\books_cleaned.csv",
+  "rows_before_cleaning": 1000,
+  "rows_after_cleaning": 1000,
+  "duplicate_rows_removed": 0,
+  "rows_removed_missing_required_values": 0,
+  "rows_removed_invalid_values": 0,
+  "rows_removed_price_outliers": 0,
+  "target_column": "is_high_rating",
+  "target_definition": "1 if rating is greater than or equal to 4, otherwise 0",
+  "final_columns": [
+    "book_title",
+    "book_category",
+    "price_gbp",
+    "rating",
+    "availability_status",
+    "product_url",
+    "is_high_rating"
+  ]
+}

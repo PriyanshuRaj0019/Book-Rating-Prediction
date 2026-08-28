@@ -1,0 +1,69 @@
+{
+  "input_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\books_cleaned.csv",
+  "row_count": 1000,
+  "column_count": 7,
+  "duplicate_rows": 0,
+  "missing_values_by_column": {
+    "book_title": 0,
+    "book_category": 0,
+    "price_gbp": 0,
+    "rating": 0,
+    "availability_status": 0,
+    "product_url": 0,
+    "is_high_rating": 0
+  },
+  "price_summary": {
+    "minimum": 10.0,
+    "maximum": 59.99,
+    "mean": 35.07,
+    "median": 35.98,
+    "standard_deviation": 14.45
+  },
+  "rating_distribution": {
+    "1": 226,
+    "2": 196,
+    "3": 203,
+    "4": 179,
+    "5": 196
+  },
+  "target_summary": {
+    "high_rating_count": 375,
+    "low_rating_count": 625,
+    "high_rating_percentage": 37.5,
+    "low_rating_percentage": 62.5
+  },
+  "correlation_matrix": {
+    "price_gbp": {
+      "price_gbp": 1.0,
+      "rating": 0.0282,
+      "is_high_rating": 0.0347
+    },
+    "rating": {
+      "price_gbp": 0.0282,
+      "rating": 1.0,
+      "is_high_rating": 0.8639
+    },
+    "is_high_rating": {
+      "price_gbp": 0.0347,
+      "rating": 0.8639,
+      "is_high_rating": 1.0
+    }
+  },
+  "saved_figures": [
+    "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\price_distribution.png",
+    "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\rating_distribution.png",
+    "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\target_distribution.png",
+    "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\price_by_rating.png",
+    "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\correlation_heatmap.png"
+  ],
+  "business_observations": [
+    "The dataset contains 1000 scraped book records after cleaning.",
+    "Book prices range from \u00a310.0 to \u00a359.99.",
+    "The average book price is \u00a335.07, while the median price is \u00a335.98.",
+    "The most common rating in the dataset is 1.",
+    "High-rated books represent 37.5% of the dataset.",
+    "The dataset is suitable for binary classification using the target is_high_rating.",
+    "Raw rating should not be used as a model feature later because it directly defines the target.",
+    "The source is a scraping sandbox, so insights are educational and not real market conclusions."
+  ]
+}

@@ -1,0 +1,4 @@
+model_name,search_method,best_cv_f1_score,test_accuracy,test_precision,test_recall,test_f1_score,test_roc_auc,best_parameters,model_path
+Support Vector Machine,GridSearchCV,0.6139,0.355,0.3333,0.72,0.4557,0.5621,"{'C': 0.1, 'class_weight': None, 'gamma': 'scale', 'kernel': 'linear'}",D:\PERSONAL\PROJECTS\Internship\Priyanshu_INBT021231_iNeuBytes\Major Project\models\svm_model.joblib
+Logistic Regression,GridSearchCV,0.5565,0.415,0.3409,0.6,0.4348,0.4217,"{'C': 1.0, 'class_weight': None, 'penalty': 'l2'}",D:\PERSONAL\PROJECTS\Internship\Priyanshu_INBT021231_iNeuBytes\Major Project\models\logistic_regression_model.joblib
+Random Forest,RandomizedSearchCV,0.6214,0.565,0.3929,0.2933,0.3359,0.5263,"{'class_weight': 'balanced', 'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 108}",D:\PERSONAL\PROJECTS\Internship\Priyanshu_INBT021231_iNeuBytes\Major Project\models\random_forest_model.joblib

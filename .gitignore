@@ -1,0 +1,37 @@
+# Data files
+data/raw/*
+data/processed/*
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+!data/processed/balancing_metadata.json
+!data/processed/baseline_metrics.json
+!data/processed/cleaning_metadata.json
+!data/processed/feature_metadata.json
+!data/processed/final_evaluation_metrics.json
+!data/processed/model_comparison.csv
+!data/processed/model_interpretation.json
+!data/processed/model_training_results.json
+!data/processed/persistence_metadata.json
+
+# Model artifacts
+models/*
+!models/.gitkeep
+!models/inference_bundle.joblib
+
+# Report outputs
+reports/figures/*
+!reports/figures/.gitkeep
+!reports/figures/confusion_matrix.png
+!reports/figures/correlation_heatmap.png
+!reports/figures/feature_importance.png
+!reports/figures/price_by_rating.png
+!reports/figures/price_distribution.png
+!reports/figures/rating_distribution.png
+!reports/figures/roc_curve.png
+!reports/figures/target_distribution.png
+
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,26 @@
+{
+  "model_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\final_model.joblib",
+  "preprocessing_pipeline_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\fitted_preprocessing_pipeline.joblib",
+  "joblib_bundle_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\inference_bundle.joblib",
+  "pickle_bundle_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\inference_bundle.pkl",
+  "input_columns": [
+    "book_title",
+    "book_category",
+    "price_gbp",
+    "availability_status"
+  ],
+  "scaler_saved_inside_pipeline": true,
+  "encoder_saved_inside_pipeline": true,
+  "joblib_load_test_passed": true,
+  "pickle_load_test_passed": true,
+  "sample_prediction": 1,
+  "sample_prediction_probability": 0.489498,
+  "notes": [
+    "The final estimator and fitted preprocessing pipeline are saved together for safe inference.",
+    "The fitted scaler is stored inside the numeric preprocessing pipeline.",
+    "The fitted encoder is stored inside the categorical preprocessing pipeline.",
+    "Joblib is the preferred artifact for this project because it is standard for scikit-learn objects.",
+    "Pickle is saved only to satisfy persistence-format coverage and should be used carefully.",
+    "Both saved bundles were loaded back and tested with a real sample input."
+  ]
+}

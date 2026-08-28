@@ -1,0 +1,85 @@
+{
+  "input_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\books_cleaned.csv",
+  "train_test_split_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\train_test_split.joblib",
+  "balanced_training_sets_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\balanced_training_sets.joblib",
+  "fitted_preprocessing_pipeline_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\fitted_preprocessing_pipeline.joblib",
+  "test_size": 0.2,
+  "random_state": 42,
+  "original_dataset_distribution": {
+    "class_0_count": 625,
+    "class_1_count": 375,
+    "class_0_percentage": 62.5,
+    "class_1_percentage": 37.5,
+    "minority_class": 1,
+    "minority_ratio": 0.375,
+    "imbalance_detected": false
+  },
+  "training_distribution_before_balancing": {
+    "class_0_count": 500,
+    "class_1_count": 300,
+    "class_0_percentage": 62.5,
+    "class_1_percentage": 37.5,
+    "minority_class": 1,
+    "minority_ratio": 0.375,
+    "imbalance_detected": false
+  },
+  "test_distribution": {
+    "class_0_count": 125,
+    "class_1_count": 75,
+    "class_0_percentage": 62.5,
+    "class_1_percentage": 37.5,
+    "minority_class": 1,
+    "minority_ratio": 0.375,
+    "imbalance_detected": false
+  },
+  "sampling_results": [
+    {
+      "strategy_name": "smote",
+      "class_distribution": {
+        "class_0_count": 500,
+        "class_1_count": 500,
+        "class_0_percentage": 50.0,
+        "class_1_percentage": 50.0,
+        "minority_class": 0,
+        "minority_ratio": 0.5,
+        "imbalance_detected": false
+      },
+      "sample_count": 1000
+    },
+    {
+      "strategy_name": "adasyn",
+      "class_distribution": {
+        "class_0_count": 500,
+        "class_1_count": 514,
+        "class_0_percentage": 49.31,
+        "class_1_percentage": 50.69,
+        "minority_class": 0,
+        "minority_ratio": 0.4931,
+        "imbalance_detected": false
+      },
+      "sample_count": 1014
+    },
+    {
+      "strategy_name": "random_oversampling",
+      "class_distribution": {
+        "class_0_count": 500,
+        "class_1_count": 500,
+        "class_0_percentage": 50.0,
+        "class_1_percentage": 50.0,
+        "minority_class": 0,
+        "minority_ratio": 0.5,
+        "imbalance_detected": false
+      },
+      "sample_count": 1000
+    }
+  ],
+  "chosen_strategy": "smote",
+  "chosen_strategy_reason": "SMOTE is selected as the default training strategy because it balances the minority class by creating synthetic samples instead of only duplicating existing rows. ADASYN and random oversampling are saved for comparison in later modeling phases.",
+  "leakage_prevention_notes": [
+    "The train-test split is created before any balancing is applied.",
+    "The preprocessing pipeline is fitted only on the training set.",
+    "The test set is transformed but never balanced.",
+    "SMOTE, ADASYN, and random oversampling are applied only to the processed training set.",
+    "The rating column is excluded from input features because it directly defines the target."
+  ]
+}

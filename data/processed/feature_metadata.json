@@ -1,0 +1,36 @@
+{
+  "input_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\books_cleaned.csv",
+  "feature_data_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\data\\processed\\books_features.csv",
+  "preprocessing_pipeline_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\preprocessing_pipeline.joblib",
+  "row_count": 1000,
+  "target_column": "is_high_rating",
+  "excluded_columns": [
+    "rating",
+    "product_url"
+  ],
+  "numeric_features": [
+    "price_gbp",
+    "price_log_gbp",
+    "title_character_count",
+    "title_word_count",
+    "title_digit_count",
+    "title_punctuation_count",
+    "title_uppercase_ratio",
+    "availability_quantity"
+  ],
+  "categorical_features": [
+    "book_category",
+    "availability_status",
+    "price_band"
+  ],
+  "feature_engineering_notes": [
+    "The raw rating column is excluded from model features because it defines the target.",
+    "Product URL is excluded because it is an identifier-like field and is not suitable for generalizable prediction.",
+    "Price is transformed using log1p to reduce skew.",
+    "Book title is converted into length, word count, digit count, punctuation count, and uppercase ratio features.",
+    "Categorical variables are handled through one-hot encoding inside the preprocessing pipeline.",
+    "Numeric variables are median-imputed and standardized inside the preprocessing pipeline.",
+    "VarianceThreshold is included for feature selection and will remove zero-variance features when fitted on training data.",
+    "The preprocessing pipeline is intentionally saved unfitted to avoid train-test leakage."
+  ]
+}

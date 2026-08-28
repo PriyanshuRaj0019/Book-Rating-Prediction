@@ -1,0 +1,29 @@
+{
+  "model_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\models\\final_model.joblib",
+  "test_sample_count": 200,
+  "accuracy": 0.355,
+  "precision": 0.3333,
+  "recall": 0.72,
+  "f1_score": 0.4557,
+  "roc_auc": 0.5621,
+  "confusion_matrix": [
+    [
+      17,
+      108
+    ],
+    [
+      21,
+      54
+    ]
+  ],
+  "classification_report_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\docs\\classification_report.json",
+  "confusion_matrix_plot_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\confusion_matrix.png",
+  "roc_curve_plot_path": "D:\\PERSONAL\\PROJECTS\\Internship\\Priyanshu_INBT021231_iNeuBytes\\Major Project\\reports\\figures\\roc_curve.png",
+  "evaluation_notes": [
+    "The final model is evaluated only on the untouched test set.",
+    "The test set was not balanced using SMOTE, ADASYN, or random oversampling.",
+    "F1 score is important because the target classes are not perfectly balanced.",
+    "ROC-AUC measures how well the model separates low-rating and high-rating classes.",
+    "Results are educational because the source dataset is a scraping sandbox with random ratings."
+  ]
+}

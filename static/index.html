@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Book Rating Predictor is a machine learning web app that predicts whether a book is likely to receive a high or low rating."
+  />
+  <title>Book Rating Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="/">
+        <span class="brand-mark">BR</span>
+        <span>Book Rating Predictor</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#predict">Try Prediction</a>
+        <a href="#workflow">Workflow</a>
+        <a href="/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
+        <a
+          href="https://github.com/Priyanshu-INBT021231/Priyanshu_INBT021231_iNeuBytes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="page-shell hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">End-to-End Machine Learning Application</div>
+          <h1>Predict whether a book is likely to receive a high or low rating.</h1>
+          <p>
+            A production-style ML web app built with ethical data collection,
+            preprocessing, model training, persistence, and FastAPI deployment.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#predict">Try Prediction</a>
+            <a class="button button-secondary" href="/docs" target="_blank" rel="noopener noreferrer">
+              Open API Docs
+            </a>
+          </div>
+
+          <div class="trust-line">
+            Powered by FastAPI, scikit-learn, and a saved preprocessing pipeline.
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Model summary">
+          <div class="panel-header">
+            <span class="status-dot"></span>
+            <span>Model service</span>
+          </div>
+
+          <div class="metric-list">
+            <div class="metric-item">
+              <span>Task</span>
+              <strong>Binary Classification</strong>
+            </div>
+            <div class="metric-item">
+              <span>Input Type</span>
+              <strong>Structured Book Data</strong>
+            </div>
+            <div class="metric-item">
+              <span>Deployment</span>
+              <strong>FastAPI on Render</strong>
+            </div>
+            <div class="metric-item">
+              <span>Version</span>
+              <strong>v1.0.0</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="page-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Workflow</span>
+          <h2>Built like a real ML pipeline</h2>
+          <p>
+            The app follows the same stages used in production-grade data science projects.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <span class="card-badge">01</span>
+            <h3>Data Collection</h3>
+            <p>Public book data collected ethically using BeautifulSoup and request rate limiting.</p>
+          </article>
+
+          <article class="workflow-card">
+            <span class="card-badge">02</span>
+            <h3>Preprocessing</h3>
+            <p>Missing values, duplicates, invalid values, data types, and outliers were handled.</p>
+          </article>
+
+          <article class="workflow-card">
+            <span class="card-badge">03</span>
+            <h3>Model Training</h3>
+            <p>Multiple classifiers were trained and compared using cross-validation.</p>
+          </article>
+
+          <article class="workflow-card">
+            <span class="card-badge">04</span>
+            <h3>Prediction</h3>
+            <p>The deployed API loads the saved model bundle and returns predictions instantly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="predict" class="section prediction-section">
+      <div class="page-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Prediction</span>
+          <h2>Test the model with book details</h2>
+          <p>
+            Enter book information and the app will predict whether it is likely to be high-rated.
+          </p>
+        </div>
+
+        <div class="prediction-grid">
+          <section class="card form-card" aria-labelledby="prediction-form-title">
+            <div class="card-header">
+              <div>
+                <h3 id="prediction-form-title">Book input</h3>
+                <p>All fields are validated before prediction.</p>
+              </div>
+              <span class="small-badge">Live API</span>
+            </div>
+
+            <form id="prediction-form" novalidate>
+              <div class="form-group">
+                <label for="book-title">Book title</label>
+                <input
+                  id="book-title"
+                  name="book_title"
+                  type="text"
+                  placeholder="A Light in the Attic"
+                  autocomplete="off"
+                  required
+                />
+                <p class="field-error" id="book-title-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="book-category">Category</label>
+                <input
+                  id="book-category"
+                  name="book_category"
+                  type="text"
+                  placeholder="Books"
+                  autocomplete="off"
+                  required
+                />
+                <p class="field-error" id="book-category-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="price-gbp">Price in GBP</label>
+                <input
+                  id="price-gbp"
+                  name="price_gbp"
+                  type="number"
+                  min="0.01"
+                  max="1000"
+                  step="0.01"
+                  placeholder="51.77"
+                  required
+                />
+                <p class="field-error" id="price-gbp-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="availability-status">Availability status</label>
+                <input
+                  id="availability-status"
+                  name="availability_status"
+                  type="text"
+                  placeholder="In stock"
+                  autocomplete="off"
+                  required
+                />
+                <p class="field-error" id="availability-status-error"></p>
+              </div>
+
+              <div class="form-actions">
+                <button class="button button-primary" type="submit" id="predict-button">
+                  Predict Rating
+                </button>
+                <button class="button button-secondary" type="button" id="example-button">
+                  Use Example Input
+                </button>
+                <button class="button button-ghost" type="reset" id="reset-button">
+                  Reset
+                </button>
+              </div>
+
+              <p class="helper-text">
+                The app uses the same preprocessing pipeline that was fitted during model training.
+              </p>
+            </form>
+          </section>
+
+          <section class="card result-card" aria-labelledby="result-title">
+            <div class="card-header">
+              <div>
+                <h3 id="result-title">Prediction result</h3>
+                <p id="result-subtitle">Enter book details and click Predict Rating.</p>
+              </div>
+              <span class="small-badge" id="result-state">Waiting</span>
+            </div>
+
+            <div class="result-empty" id="result-empty">
+              <div class="empty-icon">↗</div>
+              <p>Your prediction result will appear here without reloading the page.</p>
+            </div>
+
+            <div class="result-content hidden" id="result-content">
+              <div class="prediction-label-row">
+                <span>Prediction</span>
+                <strong id="prediction-label">—</strong>
+              </div>
+
+              <div class="confidence-block">
+                <div class="confidence-header">
+                  <span>High rating probability</span>
+                  <strong id="confidence-value">—</strong>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                  <div class="progress-bar" id="confidence-bar"></div>
+                </div>
+              </div>
+
+              <div class="explanation-box">
+                <span>Explanation</span>
+                <p id="prediction-explanation">
+                  Based on title-derived features, category, price, and availability patterns.
+                </p>
+              </div>
+
+              <div class="result-meta">
+                <div>
+                  <span>Model version</span>
+                  <strong id="model-version">—</strong>
+                </div>
+                <div>
+                  <span>Status</span>
+                  <strong id="prediction-status">Completed</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="error-box hidden" id="error-box" role="alert"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-shell info-grid">
+        <article class="card explanation-card">
+          <span class="eyebrow">How it works</span>
+          <h2>Same training pipeline, reused at inference</h2>
+          <div class="bullet-list">
+            <div>
+              <strong>1. Frontend validation</strong>
+              <p>The browser checks that title, category, price, and availability are valid.</p>
+            </div>
+            <div>
+              <strong>2. FastAPI request</strong>
+              <p>The input is sent to the `/predict` endpoint as structured JSON.</p>
+            </div>
+            <div>
+              <strong>3. Pipeline inference</strong>
+              <p>The fitted preprocessing pipeline transforms the input before the model predicts.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card api-card">
+          <span class="eyebrow">API</span>
+          <h2>Developer-ready endpoints</h2>
+
+          <div class="endpoint-list">
+            <div class="endpoint-item">
+              <code>POST /predict</code>
+              <span>Returns prediction and probability.</span>
+            </div>
+            <div class="endpoint-item">
+              <code>GET /health</code>
+              <span>Checks API and model bundle status.</span>
+            </div>
+            <div class="endpoint-item">
+              <code>GET /docs</code>
+              <span>Interactive Swagger documentation.</span>
+            </div>
+          </div>
+
+          <a class="button button-secondary full-width" href="/docs" target="_blank" rel="noopener noreferrer">
+            Open API Documentation
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-content">
+      <p>Book Rating Predictor · End-to-End ML Project</p>
+      <div class="footer-links">
+        <span>Priyanshu Raj</span>
+        <a href="/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
+        <a
+          href="https://github.com/Priyanshu-INBT021231/Priyanshu_INBT021231_iNeuBytes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
