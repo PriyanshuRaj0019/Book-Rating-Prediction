@@ -1,318 +1,599 @@
-# 📚 Book Rating Prediction — End-to-End Machine Learning
+# 📚 Book Rating Prediction — End-to-End Machine Learning Project
 
-An end-to-end Machine Learning application that predicts whether a book is likely to receive a **high or low rating** based on book metadata such as title, category, price, and availability.
-
-The project covers the complete ML lifecycle — from **data collection and preprocessing to model training, evaluation, interpretability, API development, frontend integration, testing, and deployment**.
+> An end-to-end machine learning system that predicts whether a book is likely to receive a **high or low rating**, from data collection and preprocessing to model development, explainability, FastAPI deployment, frontend integration, testing, and production deployment.
 
 ## 🚀 Live Demo
 
-🌐 **Live Application:**  
-https://book-rating-prediction-heu5.onrender.com/
+### 🌐 Deployed Application
 
-📖 **Swagger API Documentation:**  
-https://book-rating-prediction-heu5.onrender.com/docs
+**[Book Rating Prediction — Live Demo](https://book-rating-prediction-heu5.onrender.com/)**
 
-🏥 **Health Check:**  
-https://book-rating-prediction-heu5.onrender.com/health
+The application provides an interactive frontend where users can enter book information and receive a predicted rating category along with the model's estimated probability.
 
-💻 **GitHub Repository:**  
-https://github.com/PriyanshuRaj0019/Book-Rating-Prediction
+### 🔗 Application Endpoints
+
+| Endpoint   | Description                           |
+| ---------- | ------------------------------------- |
+| `/`        | Interactive prediction frontend       |
+| `/docs`    | Interactive Swagger API documentation |
+| `/health`  | Application and model health check    |
+| `/predict` | Book rating prediction API            |
+
+**Live URLs:**
+
+* **Web Application:** https://book-rating-prediction.onrender.com/
+* **Swagger API:** https://book-rating-prediction.onrender.com/docs
+* **Health Check:** https://book-rating-prediction.onrender.com/health
 
 ---
 
-## 🎯 Project Objective
+## 📌 Project Overview
 
-The objective is to predict whether a book is likely to receive a **high rating** or **low rating** using structured book information.
+This is a production-style, end-to-end machine learning project designed to demonstrate the complete ML lifecycle.
+
+The system predicts whether a book is likely to receive a **high rating** or **low rating** using structured book information such as:
+
+* Book title
+* Book category
+* Price
+* Availability status
+
+The project covers:
+
+* Ethical data collection
+* Data preprocessing
+* Exploratory data analysis
+* Feature engineering
+* Class imbalance handling
+* Baseline modeling
+* Model development
+* Hyperparameter tuning
+* Cross-validation
+* Model interpretability
+* Final model evaluation
+* Model persistence
+* FastAPI REST API
+* Custom frontend UI
+* Automated API testing
+* Render deployment
+* Documentation
+
+---
+
+# 🎯 Problem Statement
+
+The objective is to build a machine learning classification system that predicts whether a book is likely to be **high-rated** or **low-rated** based on information available before making the prediction.
 
 ### Target Variable
 
 ```text
 is_high_rating
-1 → Rating >= 4
+```
+
+Target definition:
+
+```text
+1 → Rating ≥ 4
 0 → Rating < 4
+```
 
-The original rating feature is excluded from model inputs because it directly defines the target and would cause target leakage.
+The original `rating` feature is deliberately excluded from model inputs because it directly determines the target.
 
-📊 Dataset
+Including it would result in **target leakage**, producing artificially strong model performance.
 
-Data was collected from Books to Scrape, a public website designed for web scraping practice.
+---
 
-Source: https://books.toscrape.com/
+# 📊 Dataset
 
-Dataset Size
-1,000 book records
-Collected Attributes
-Book title
-Book category
-Price
-Rating
-Availability status
-Product URL
+## Source
 
-Note: Books to Scrape contains fictional/demo data. Prices and ratings are not real-world commercial data, so all insights and predictions should be considered educational.
+Data was collected from:
 
-🔄 Machine Learning Pipeline
-Data Collection
-      ↓
-Data Validation & Cleaning
-      ↓
-Exploratory Data Analysis
-      ↓
-Feature Engineering
-      ↓
-Train/Test Split
-      ↓
-Class Imbalance Handling
-      ↓
-Baseline Model
-      ↓
-Model Training & Hyperparameter Tuning
-      ↓
-Model Comparison
-      ↓
-Model Interpretation
-      ↓
-Final Evaluation
-      ↓
-Model Persistence
-      ↓
-FastAPI Backend
-      ↓
-Frontend UI
-      ↓
-Automated Testing
-      ↓
-Render Deployment
-1. 🕷️ Data Collection
+**Books to Scrape**
+
+https://books.toscrape.com/
+
+Books to Scrape is a publicly available website specifically designed as a web scraping practice environment.
+
+### Dataset Size
+
+```text
+1,000 records
+```
+
+### Collected Attributes
+
+* Book title
+* Category
+* Price
+* Rating
+* Availability status
+* Product URL
+
+### ⚠️ Dataset Limitation
+
+The website contains fictional/demo book data.
+
+Therefore:
+
+* Prices are not real commercial prices.
+* Ratings are not representative of real customer behavior.
+* Business conclusions should not be interpreted as real-world market insights.
+
+This project is intended for **educational, internship, and portfolio purposes**.
+
+---
+
+# 🏗️ Machine Learning Pipeline
+
+```text
+                    ┌─────────────────────┐
+                    │  Books to Scrape    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │  Ethical Scraping   │
+                    │ Requests + BS4      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Data Preprocessing  │
+                    │ Cleaning + Target   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │        EDA          │
+                    │ Statistics + Plots │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Feature Engineering │
+                    │ Encoding + Scaling  │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Class Balancing     │
+                    │       SMOTE         │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+              ┌──────────────────────────────┐
+              │       Model Development     │
+              │                              │
+              │ Logistic Regression          │
+              │ Random Forest                │
+              │ Support Vector Machine       │
+              └──────────────┬───────────────┘
+                             │
+                             ▼
+                    ┌─────────────────────┐
+                    │ Model Evaluation    │
+                    │ F1 + ROC-AUC etc.   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Interpretability    │
+                    │ Permutation FI      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Model Persistence   │
+                    │ Inference Bundle    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     FastAPI API     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Frontend UI         │
+                    │ HTML/CSS/JavaScript │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Render Deployment   │
+                    └─────────────────────┘
+```
+
+---
+
+# 🔬 Machine Learning Workflow
+
+## 1. Ethical Data Collection
 
 The scraping pipeline uses:
 
-Python
-Requests
-BeautifulSoup
-Custom request headers
-Rate limiting
-Error handling
-Logging
-robots.txt verification
-CSV storage
-Source metadata tracking
+* Python Requests
+* BeautifulSoup
+* Custom request headers
+* Rate limiting
+* Error handling
+* Logging
+* `robots.txt` verification
+* CSV storage
+* Source metadata documentation
 
-Outputs:
+### Generated Files
 
+```text
 data/raw/books.csv
 data/raw/source_metadata.json
-2. 🧹 Data Preprocessing
+```
+
+---
+
+## 2. Data Preprocessing
 
 The preprocessing pipeline handles:
 
-Missing values
-Duplicate records
-Invalid values
-Data type conversion
-Column standardization
-Outlier detection
-Target creation
-Data validation
+* Missing values
+* Duplicate records
+* Invalid values
+* Data type corrections
+* Column renaming
+* Outlier detection
+* Target creation
 
-Outputs:
+### Generated Files
 
+```text
 data/processed/books_cleaned.csv
 data/processed/cleaning_metadata.json
-3. 📈 Exploratory Data Analysis
+```
 
-EDA includes:
+---
 
-Rating distribution
-Price distribution
-Target distribution
-Price by rating
-Correlation analysis
-Summary statistics
-Dataset-level observations
+## 3. Exploratory Data Analysis
 
-Generated visualizations:
+The EDA stage analyzes:
 
-reports/figures/
-├── price_distribution.png
-├── rating_distribution.png
-├── target_distribution.png
-├── price_by_rating.png
-└── correlation_heatmap.png
-4. ⚙️ Feature Engineering
+* Rating distribution
+* Price distribution
+* Target distribution
+* Price by rating
+* Correlations
+* Summary statistics
+* Dataset characteristics
+* Business-oriented observations
 
-Engineered features include:
+### Generated Reports
 
-Numerical Features
-Price transformation
-Price band
-Title character count
-Title word count
-Title digit count
-Title punctuation count
-Title uppercase ratio
-Availability quantity
-Categorical Features
-Book category
-Availability status
+```text
+reports/docs/eda_summary.json
+```
 
-Categorical variables are encoded and numerical variables are scaled using a preprocessing pipeline.
+### Generated Visualizations
 
-Excluded Features
+```text
+reports/figures/price_distribution.png
+reports/figures/rating_distribution.png
+reports/figures/target_distribution.png
+reports/figures/price_by_rating.png
+reports/figures/correlation_heatmap.png
+```
+
+---
+
+## 4. Feature Engineering
+
+The feature engineering pipeline creates additional predictive features.
+
+### Numerical Features
+
+* Price transformation
+* Price band
+* Title character count
+* Title word count
+* Title digit count
+* Title punctuation count
+* Title uppercase ratio
+* Availability quantity
+
+### Categorical Features
+
+Categorical variables are encoded for machine learning models.
+
+### Numerical Processing
+
+Numeric variables are appropriately scaled where required.
+
+### Excluded Features
+
+```text
 rating
 product_url
+```
 
-rating is excluded to prevent target leakage, while product_url is excluded because it is identifier-like and does not provide a meaningful generalizable signal.
+### Why?
 
-5. ⚖️ Class Imbalance
+`rating` directly determines the target and would create **data leakage**.
 
-Class imbalance was evaluated before model training.
+`product_url` is an identifier-like feature and does not provide meaningful generalizable predictive information.
 
-The following techniques were considered:
+### Generated Artifacts
 
+```text
+data/processed/books_features.csv
+data/processed/feature_metadata.json
+models/preprocessing_pipeline.joblib
+```
+
+---
+
+# ⚖️ 5. Class Imbalance Handling
+
+Class distribution was evaluated before model training.
+
+The following approaches were considered:
+
+* SMOTE
+* ADASYN
+* Random Oversampling
+
+### Selected Strategy
+
+```text
 SMOTE
-ADASYN
-Random Oversampling
-Selected Strategy
-SMOTE
+```
 
-SMOTE generates synthetic minority-class observations rather than simply duplicating existing observations.
+SMOTE was selected because it generates synthetic minority-class observations rather than simply duplicating existing observations.
 
-6. 🤖 Baseline Model
+### Generated Artifacts
 
-A DummyClassifier using the most-frequent-class strategy was trained as a baseline.
+```text
+data/processed/train_test_split.joblib
+data/processed/balanced_training_sets.joblib
+data/processed/balancing_metadata.json
+models/fitted_preprocessing_pipeline.joblib
+```
 
-The baseline establishes a minimum benchmark that the actual Machine Learning models should outperform.
+---
 
-7. 🧠 Machine Learning Models
+# 🧪 6. Baseline Model
 
-The following models were trained and compared:
+A `DummyClassifier` using the most-frequent-class strategy was trained as a baseline.
 
-Logistic Regression
-Random Forest
-Support Vector Machine
-Optimization
-GridSearchCV
-RandomizedSearchCV
-5-fold cross-validation
-F1-based model selection
+The purpose of the baseline is to establish a minimum performance benchmark that the actual machine learning models must outperform.
 
-The final model was selected based on comparative validation performance.
+### Generated Artifacts
 
-8. 🔍 Model Interpretability
+```text
+models/baseline_model.joblib
+data/processed/baseline_metrics.json
+```
 
-Permutation Feature Importance was used to understand which features contributed most to model predictions.
+---
 
-Outputs:
+# 🤖 7. Model Development
 
+Three classification algorithms were evaluated:
+
+### Logistic Regression
+
+Provides a strong linear classification baseline and interpretable coefficients.
+
+### Random Forest
+
+Captures nonlinear relationships and feature interactions.
+
+### Support Vector Machine
+
+Provides a powerful classification approach, particularly after feature scaling.
+
+### Training Strategy
+
+* GridSearchCV
+* RandomizedSearchCV
+* 5-fold cross-validation
+* F1-based model selection
+
+### Generated Artifacts
+
+```text
+models/logistic_regression_model.joblib
+models/random_forest_model.joblib
+models/svm_model.joblib
+models/final_model.joblib
+```
+
+### Training Results
+
+```text
+data/processed/model_comparison.csv
+data/processed/model_training_results.json
+```
+
+---
+
+# 🔎 8. Model Interpretability
+
+Permutation Feature Importance was used to understand how individual features influence model performance.
+
+This approach is model-agnostic and can therefore be applied consistently across different model families.
+
+### Generated Artifacts
+
+```text
 data/processed/model_interpretation.json
 reports/figures/feature_importance.png
-9. 📊 Model Evaluation
+```
 
-The final model is evaluated using:
+---
 
-Accuracy
-Precision
-Recall
-F1 Score
-ROC-AUC
-Confusion Matrix
-ROC Curve
-Classification Report
+# 📈 9. Final Model Evaluation
 
-Outputs:
+The final model is evaluated using multiple classification metrics.
 
+### Metrics
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC-AUC
+* Confusion Matrix
+* ROC Curve
+* Classification Report
+
+### Generated Artifacts
+
+```text
 data/processed/final_evaluation_metrics.json
 reports/docs/classification_report.json
 reports/figures/confusion_matrix.png
 reports/figures/roc_curve.png
-10. 💾 Model Persistence
+```
 
-The trained model and preprocessing pipeline are stored as an inference bundle.
+---
 
-Preferred artifact:
+# 💾 10. Model Persistence
 
+The trained model and preprocessing pipeline are packaged together into an inference bundle.
+
+This ensures that the same preprocessing logic used during training can be reproduced during inference.
+
+### Artifacts
+
+```text
 models/inference_bundle.joblib
+models/inference_bundle.pkl
+data/processed/persistence_metadata.json
+```
 
-This ensures that the same preprocessing and trained model configuration is used during inference.
+### Preferred Inference Artifact
 
-🌐 Web Application
+```text
+models/inference_bundle.joblib
+```
 
-The application is built using:
+---
 
+# 🌐 Application
+
+The machine learning model is exposed through a **FastAPI REST API** and integrated with a custom frontend.
+
+### Technology Stack
+
+```text
+Python
+Scikit-learn
+Pandas
+NumPy
+Imbalanced-learn
+BeautifulSoup
+Requests
 FastAPI
+Uvicorn
 HTML
 CSS
 JavaScript
-Scikit-learn
-Joblib
-Features
-Custom prediction UI
-Prediction form
-Example input
-Loading state
-Success state
-Error handling
-High-rating probability
-Probability progress bar
-REST API integration
-Swagger documentation
-Health check endpoint
-🔌 API
-GET /
+Pytest
+Render
+```
 
-Returns the custom prediction interface.
+---
 
-GET /health
+# 🖥️ Frontend Features
 
-Checks API and model availability.
+The custom frontend provides:
 
-Example:
+* Book prediction form
+* Example input functionality
+* Loading state
+* Success state
+* Error handling
+* High-rating probability display
+* Probability progress bar
+* API integration
+* Responsive interface
 
+---
+
+# 🔌 REST API
+
+## `GET /`
+
+Returns the custom frontend interface.
+
+**Live:**
+
+https://book-rating-prediction-heu5.onrender.com/
+
+---
+
+## `GET /health`
+
+Checks whether the API and model are operational.
+
+Example response:
+
+```json
 {
   "status": "ok",
   "model_loaded": true,
   "bundle_path": "models/inference_bundle.joblib"
 }
-POST /predict
+```
 
-Predicts whether a book is likely to receive a high rating.
+**Live:**
 
-Request
+https://book-rating-prediction-heu5.onrender.com/health
+
+---
+
+## `POST /predict`
+
+Predicts whether a book is likely to receive a high or low rating.
+
+### Example Request
+
+```json
 {
   "book_title": "A Light in the Attic",
   "book_category": "Books",
   "price_gbp": 51.77,
   "availability_status": "In stock"
 }
-Response
+```
+
+### Example Response
+
+```json
 {
   "prediction": 0,
   "prediction_label": "low_rating",
   "high_rating_probability": 0.42,
   "model_version": "1.0.0"
 }
-Swagger
+```
 
-Interactive API documentation is available at:
+---
+
+# 📖 Swagger API Documentation
+
+FastAPI automatically provides interactive API documentation.
+
+**Swagger UI:**
 
 https://book-rating-prediction-heu5.onrender.com/docs
 
-🧪 Testing
+The Swagger interface can be used to test the `/predict` endpoint directly from the browser.
 
-API functionality is tested using Pytest.
+---
 
-python -m pytest tests/test_api.py -q
+# 📁 Project Structure
 
-Tests cover:
-
-API availability
-Health endpoint
-Prediction endpoint
-Valid inputs
-Response structure
-Error handling
-📁 Project Structure
+```text
 Book-Rating-Prediction/
 │
 ├── data/
@@ -329,21 +610,28 @@ Book-Rating-Prediction/
 ├── src/
 │   ├── api/
 │   │   └── app.py
+│   │
 │   ├── config/
+│   │
 │   ├── data_collection/
 │   │   └── scrape_books.py
+│   │
 │   ├── eda/
 │   │   └── analyze_books.py
+│   │
 │   ├── evaluation/
 │   │   ├── evaluate_model.py
 │   │   └── interpret_model.py
+│   │
 │   ├── features/
 │   │   └── build_features.py
+│   │
 │   ├── modeling/
 │   │   ├── handle_imbalance.py
 │   │   ├── persist_model.py
 │   │   ├── train_baseline.py
 │   │   └── train_models.py
+│   │
 │   └── preprocessing/
 │       └── clean_books.py
 │
@@ -360,144 +648,346 @@ Book-Rating-Prediction/
 ├── render.yaml
 ├── requirements.txt
 └── README.md
-⚙️ Local Setup
-Clone Repository
+```
+
+---
+
+# ⚙️ Local Setup
+
+## 1. Clone the Repository
+
+```bash
 git clone https://github.com/PriyanshuRaj0019/Book-Rating-Prediction.git
 cd Book-Rating-Prediction
-Create Virtual Environment
+```
+
+## 2. Create Virtual Environment
+
+```bash
 py -3.12 -m venv .venv
-Activate
+```
 
-Windows PowerShell:
+## 3. Activate Virtual Environment
 
+### Windows PowerShell
+
+```bash
 .venv\Scripts\Activate.ps1
+```
 
-Git Bash:
+### Windows Git Bash
 
+```bash
 source .venv/Scripts/activate
-Install Dependencies
+```
+
+## 4. Upgrade pip
+
+```bash
 python -m pip install --upgrade pip
+```
+
+## 5. Install Dependencies
+
+```bash
 pip install -r requirements.txt
-Verify Environment
+```
+
+## 6. Verify Environment
+
+```bash
 python -c "import pandas, sklearn, imblearn, fastapi, bs4; print('Environment ready')"
+```
 
-Expected:
+Expected output:
 
+```text
 Environment ready
-▶️ Run the Pipeline
+```
+
+---
+
+# 🔄 Run the Complete ML Pipeline
+
+Execute the following modules in order.
+
+### 1. Data Collection
+
+```bash
 python -m src.data_collection.scrape_books
+```
+
+### 2. Data Preprocessing
+
+```bash
 python -m src.preprocessing.clean_books
+```
+
+### 3. Exploratory Data Analysis
+
+```bash
 python -m src.eda.analyze_books
+```
+
+### 4. Feature Engineering
+
+```bash
 python -m src.features.build_features
+```
+
+### 5. Data Balancing
+
+```bash
 python -m src.modeling.handle_imbalance
+```
+
+### 6. Baseline Training
+
+```bash
 python -m src.modeling.train_baseline
+```
+
+### 7. Model Training
+
+```bash
 python -m src.modeling.train_models
+```
+
+### 8. Model Interpretability
+
+```bash
 python -m src.evaluation.interpret_model
+```
+
+### 9. Model Evaluation
+
+```bash
 python -m src.evaluation.evaluate_model
+```
+
+### 10. Model Persistence
+
+```bash
 python -m src.modeling.persist_model
-🚀 Run Locally
+```
+
+---
+
+# 🚀 Run the Application Locally
+
+From the project root:
+
+```bash
 python -m uvicorn src.api.app:app --reload
+```
 
-Application:
+Then open:
 
+### Frontend
+
+```text
 http://127.0.0.1:8000/
+```
 
-Swagger:
+### Swagger API
 
+```text
 http://127.0.0.1:8000/docs
+```
 
-Health Check:
+### Health Check
 
+```text
 http://127.0.0.1:8000/health
-☁️ Deployment
+```
 
-The application is deployed using Render.
+---
 
-Build Command
-pip install -r requirements.txt
-Start Command
+# 🧪 Testing
+
+API tests are implemented using `pytest`.
+
+Run:
+
+```bash
+python -m pytest tests/test_api.py -q
+```
+
+Expected result:
+
+```text
+11 passed
+```
+
+---
+
+# ☁️ Deployment
+
+The application is deployed using **Render**.
+
+### Production Start Command
+
+```bash
 python -m uvicorn src.api.app:app --host 0.0.0.0 --port $PORT
-Health Check
+```
+
+### Build Command
+
+```bash
+pip install -r requirements.txt
+```
+
+### Health Check
+
+```text
 /health
-Live Application
+```
 
-https://book-rating-prediction-heu5.onrender.com/
+### Production Application
 
-🛠️ Tech Stack
+**https://book-rating-prediction.onrender.com/**
 
-Languages & Frameworks
+---
 
-Python
-FastAPI
-HTML
-CSS
-JavaScript
+# 🔐 Deployment Artifacts
 
-Data Science & ML
+The deployment requires:
 
-Pandas
-NumPy
-Matplotlib
-Scikit-learn
-Imbalanced-learn
+```text
+.python-version
+Procfile
+render.yaml
+requirements.txt
+models/inference_bundle.joblib
+src/api/app.py
+static/index.html
+static/styles.css
+static/app.js
+```
 
+The virtual environment is intentionally excluded from version control.
+
+```text
+.venv/
+```
+
+Dependencies are reproduced using:
+
+```text
+requirements.txt
+```
+
+---
+
+# 📌 Key Engineering Practices
+
+This project emphasizes several practical machine learning engineering principles:
+
+### Data Leakage Prevention
+
+The target-defining `rating` feature is excluded from model inputs.
+
+### Reproducible Preprocessing
+
+The preprocessing pipeline is persisted alongside the model.
+
+### Class Imbalance Handling
+
+SMOTE is applied to address minority-class representation during training.
+
+### Baseline Comparison
+
+A `DummyClassifier` establishes a minimum performance benchmark.
+
+### Cross-Validation
+
+5-fold cross-validation is used during model selection.
+
+### Hyperparameter Optimization
+
+Grid search and randomized search are used to identify stronger model configurations.
+
+### Model Interpretability
+
+Permutation feature importance provides model-agnostic explanations.
+
+### API Separation
+
+The trained model is separated from the presentation layer and exposed through FastAPI.
+
+### Automated Testing
+
+The API includes automated tests using Pytest.
+
+### Deployment
+
+The trained inference application is deployed and publicly accessible through Render.
+
+---
+
+# ⚠️ Limitations
+
+This project has several important limitations.
+
+1. **Demo Dataset**
+   Books to Scrape contains fictional/demo data.
+
+2. **Small Dataset**
+   The dataset contains approximately 1,000 records.
+
+3. **Limited Feature Space**
+   The model uses structured book information rather than richer signals such as reviews, authors, publishers, or textual descriptions.
+
+4. **Synthetic Class Balancing**
+   SMOTE generates synthetic observations and therefore does not add genuinely new real-world observations.
+
+5. **Educational Objective**
+   Model predictions should not be interpreted as commercially validated book-rating forecasts.
+
+---
+
+# 🎓 Project Purpose
+
+This project was developed as a **major machine learning project for internship and portfolio purposes**.
+
+It demonstrates the transition from:
+
+```text
+Raw Data
+   ↓
 Data Collection
-
-Requests
-BeautifulSoup
-
-Machine Learning
-
-Logistic Regression
-Random Forest
-Support Vector Machine
-SMOTE
-GridSearchCV
-RandomizedSearchCV
-Cross-validation
-
-Testing & Deployment
-
-Pytest
-Uvicorn
-Render
-
+   ↓
+Data Cleaning
+   ↓
+EDA
+   ↓
+Feature Engineering
+   ↓
+Model Training
+   ↓
+Model Evaluation
+   ↓
+Model Interpretation
+   ↓
 Model Persistence
+   ↓
+REST API
+   ↓
+Frontend
+   ↓
+Cloud Deployment
+```
 
-Joblib
-🎓 Key Learning Outcomes
+The primary objective is to demonstrate practical **Machine Learning + Data Science + ML Engineering + API Deployment** skills rather than simply training a classification model.
 
-This project demonstrates practical experience with:
+---
 
-End-to-end ML pipeline development
-Web data collection
-Data preprocessing
-Exploratory data analysis
-Feature engineering
-Target leakage prevention
-Imbalanced classification
-Hyperparameter optimization
-Cross-validation
-Model comparison
-Model interpretability
-Model persistence
-REST API development
-Frontend-backend integration
-Automated testing
-Cloud deployment
-⚠️ Disclaimer
+# 👨‍💻 Author
 
-This project is intended for educational and portfolio purposes.
+**Priyanshu Raj**
 
-The dataset comes from a fictional/demo web scraping sandbox. Predictions should not be interpreted as real-world book-market recommendations or commercial decisions.
+---
 
-👤 Author
+# 📄 License
 
-Priyanshu Raj
-
-GitHub:
-https://github.com/PriyanshuRaj0019
-
-📄 License
-
-This project is available for educational and portfolio purposes.
+This project is created for **educational, internship, and portfolio purposes**.
