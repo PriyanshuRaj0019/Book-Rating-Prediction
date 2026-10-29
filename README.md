@@ -992,3 +992,4 @@ The primary objective is to demonstrate practical **Machine Learning + Data Scie
 
 This project is created for **educational, internship, and portfolio purposes**.
 <!-- Project review & docs log: 2026-10-27 [5/5] -->
+<!-- Project review & docs log: 2026-10-29 [5/6] -->
